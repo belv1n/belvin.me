@@ -1,0 +1,27 @@
+---
+
+import lanyardClient from "../../scripts/lanyardClient.js";
+
+const client = new lanyardClient();
+let connection = client.subscribe("675104167345258506");
+
+let x; 
+
+connection.addEventListener("message", (e) => {
+  const data = JSON.parse(e.data)
+  console.log(data.d.discord_user)
+});
+
+
+---
+
+
+<section>
+
+    <div>
+
+        <h1 class="text-white"> { x } </h1>
+
+    </div>
+
+</section>
