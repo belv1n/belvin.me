@@ -5,15 +5,11 @@ const socials = ["Discord", "Spotify", "Github"];
 ---
 
 <section>
+        <div>
+                {socials.map((s) => (
+                    <button class="text-white">{s}</button>
+                    ))
 
-    <div>
-
-            {socials.map((s) => (
-                <button class="text-white">{s}</button>
-                ))
-
-            }
-        
-    </div>
-
+                }
+        </div>
 </section>
