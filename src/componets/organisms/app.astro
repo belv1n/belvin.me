@@ -3,10 +3,20 @@
 import About from "../molecules/about.astro";
 import Social from "../molecules/socials.astro";
 import Presence from "../molecules/presence.astro";
+import Icon from "../atoms/icon.astro";
 
 ---
 
+<section>
+        <div class="flex flex-row justify-between mt-40 mb-40 mr-[500px] ml-[500px]">
+                <section>
+                        <About> </About>
+                        <Social> </Social>
+                </section>
 
-<About> </About>
-<Social> </Social>
-<Presence> </Presence>
+                <Icon lanyardProfilePicture="https://cdn.discordapp.com/avatars/675104167345258506/73943fa75d2d5e6363133957161d0433"> </Icon>
+        </div>
+
+        <Presence> </Presence>
+</section>
+
