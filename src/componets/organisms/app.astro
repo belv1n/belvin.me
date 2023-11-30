@@ -1,22 +1,26 @@
 ---
 
-import About from "../molecules/about.astro";
+import Intro from "../molecules/intro.astro";
 import Social from "../molecules/socials.astro";
 import Presence from "../molecules/presence.astro";
 import Icon from "../atoms/icon.astro";
+import About from "../molecules/about.astro";
 
 ---
 
 <section>
-        <div class="flex flex-row justify-between mt-40 mb-40 mr-[500px] ml-[500px]">
+        <div class="flex flex-row justify-between items-start mt-24 mb-24 mx-6 sm:mx-[10px] md:mx-[25px] xl:mx-[35px] 2xl:mx-[500px]">
                 <section>
-                        <About> </About>
-                        <Social> </Social>
+                        <Intro></Intro>
+                        <Social></Social>
                 </section>
-
-                <Icon lanyardProfilePicture="https://cdn.discordapp.com/avatars/675104167345258506/73943fa75d2d5e6363133957161d0433"> </Icon>
+                
+                <Icon  lanyardProfilePicture="https://media.tenor.com/iUHKMSbav30AAAAC/aes-pfp.gif"> </Icon>
         </div>
 
-        <Presence> </Presence>
+        <div class="flex flex-row justify-between mx-6 sm:mx-[10px] md:mx-[20px] xl:mx-[35px] 2xl:mx-[500px]">
+                <Presence></Presence>
+                <About></About>
+        </div>
 </section>
 

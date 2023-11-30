@@ -1,26 +1,44 @@
 ---
 
-import lanyardClient from "../../scripts/lanyardClient.js";
-
-const client = new lanyardClient();
-let connection = client.subscribe("675104167345258506");
-
-connection.addEventListener("message", (e) => {
-  const data = JSON.parse(e.data)
-  
-});
-
 
 ---
 
+<script>
+        import LanyardClient from "../../scripts/lanyardClient.js";
+      
+        const avatar = document.getElementById("avatar") as HTMLImageElement;
+        const spotify = document.getElementById("spotify");
+        const username = document.getElementById("username");
+      
+        const client = new LanyardClient();
+        let sock = client.subscribe("675104167345258506");
+      
+        sock.addEventListener("message", (e) => {
+                const data = JSON.parse(e.data);
+                if (data.op !== 0) {
+                return;
+                }
+                
+                const { d } = data;
+                console.log(d);
+                avatar.src = `https://cdn.discordapp.com/avatars/${d.discord_user.id}/${d.discord_user.avatar}.png`;
+                if (d.listening_to_spotify) {
+                        spotify.innerHTML = `playing "${d.spotify.song}" by ${d.spotify.artist}`;
+                } else {
+                        spotify.innerHTML = " ";
+                }
+                username.innerHTML = `@${d.discord_user.username}`;
+        });
+</script>
+
 
 <section class="text-rose-200 font-space">
-        <div class="flex flex-row justify-start items-center">
-                <img class="h-32 w-32 rounded-2xl" src="https://cdn.discordapp.com/avatars/675104167345258506/73943fa75d2d5e6363133957161d0433" alt="#">
-                <section>
-                        <h1 class="font-bold">@belviny</h1>
-                        <h4>Offline</h4>
-                        <h4>Time</h4>
+        <div class="flex flex-row justify-start items-center space-x-8 mt-8">
+                <img id="avatar" class="h-32 w-32 rounded-2xl" src="#" alt="#">
+                <section class="flex flex-col">
+                        <h1 id="username" class="font-bold text-xl">loading...</h1>
+                        <h4 id="spotify" class="break-words md:w-3/4 lg:w-2/3">loading...</h4>
+                        <h4>loading...</h4>
                 </section>
         </div>
 </section>

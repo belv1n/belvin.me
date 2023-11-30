@@ -1,6 +1,4 @@
 // Credits to ducki, lanyard client class
-import WebSocket from 'ws';
-
 const BASE_URL = 'api.lanyard.rest'
 
 class lanyardClient {
