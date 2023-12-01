@@ -1,15 +1,25 @@
 ---
 
-const socials = ["Discord", "Spotify", "Github"];
+const socials = ["discord", "spotify", "github"];
+let BASE_URL = "fa-brands fa-";
+let buttons = [];
+
+socials.map((social) => {
+    buttons.push(`${BASE_URL}${social} fa-2xl`); 
+});
+
+console.log(buttons);
 
 ---
 
-<section class="text-rose-200 font-space">
-        <div class="flex flex-row justify-start space-x-2 mt-8">
-                {socials.map((social) => (
-                    <button>{social}</button>
-                    ))
+<script src="https://kit.fontawesome.com/e243a1dc50.js" crossorigin="anonymous"></script>
 
+<section class="text-rose-100 font-space">
+        <div class="flex flex-row justify-start space-x-4 mt-8">
+                {
+                        buttons.map(button => (
+                                <button><i class={button}></i></button>
+                        )) 
                 }
         </div>
 </section>

@@ -7,7 +7,7 @@
         import LanyardClient from "../../scripts/lanyardClient.js";
       
         const avatar = document.getElementById("avatar") as HTMLImageElement;
-        const spotify = document.getElementById("spotify");
+        const nowplaying = document.getElementById("nowplaying");
         const username = document.getElementById("username");
       
         const client = new LanyardClient();
@@ -23,9 +23,9 @@
                 console.log(d);
                 avatar.src = `https://cdn.discordapp.com/avatars/${d.discord_user.id}/${d.discord_user.avatar}.png`;
                 if (d.listening_to_spotify) {
-                        spotify.innerHTML = `playing "${d.spotify.song}" by ${d.spotify.artist}`;
+                        nowplaying.innerHTML = `playing "${d.spotify.song}" by ${d.spotify.artist}`;
                 } else {
-                        spotify.innerHTML = " ";
+                        nowplaying.innerHTML = " ";
                 }
                 username.innerHTML = `@${d.discord_user.username}`;
         });
@@ -36,9 +36,8 @@
         <div class="flex flex-row justify-start items-center space-x-8 mt-8">
                 <img id="avatar" class="h-32 w-32 rounded-2xl" src="#" alt="#">
                 <section class="flex flex-col">
-                        <h1 id="username" class="font-bold text-xl">loading...</h1>
-                        <h4 id="spotify" class="break-words md:w-3/4 lg:w-2/3">loading...</h4>
-                        <h4>loading...</h4>
+                        <h1 id="username" class="font-bold text-2xl py-2">loading...</h1>
+                        <h4 id="nowplaying" class="break-words text-lg md:w-3/4 lg:w-4/5">loading...</h4>
                 </section>
         </div>
 </section>

@@ -8,19 +8,21 @@ import About from "../molecules/about.astro";
 
 ---
 
+<script src="https://kit.fontawesome.com/e243a1dc50.js" crossorigin="anonymous"></script>
+
 <section>
-        <div class="flex flex-row justify-between items-start mt-24 mb-24 mx-6 sm:mx-[10px] md:mx-[25px] xl:mx-[35px] 2xl:mx-[500px]">
+        <div class="flex flex-row justify-between items-center mt-36 mb-24 mx-6 sm:mx-[10px] md:mx-[25px] xl:mx-[35px] 2xl:mx-[500px]">
                 <section>
-                        <Intro></Intro>
-                        <Social></Social>
+                        <Intro> </Intro>
+                        <Social> </Social>
+                              
                 </section>
-                
                 <Icon  lanyardProfilePicture="https://media.tenor.com/iUHKMSbav30AAAAC/aes-pfp.gif"> </Icon>
         </div>
 
-        <div class="flex flex-row justify-between mx-6 sm:mx-[10px] md:mx-[20px] xl:mx-[35px] 2xl:mx-[500px]">
-                <Presence></Presence>
-                <About></About>
+        <div class="flex flex-col justify-between mx-6 sm:mx-[10px] md:mx-[20px] xl:mx-[35px] 2xl:mx-[500px] sm:flex-col md:flex-row lg:flex-row xl:flex-row 2xl:flex-row" >
+                <Presence> </Presence>
+                <About> </About>
         </div>
 </section>
 
