@@ -5,7 +5,7 @@ let BASE_URL = "fa-brands fa-";
 let buttons = [];
 
 socials.map((social) => {
-    buttons.push(`${BASE_URL}${social} fa-2xl`); 
+    buttons.push(`${BASE_URL}${social} fa-xl`); 
 });
 
 console.log(buttons);
@@ -15,7 +15,7 @@ console.log(buttons);
 <script src="https://kit.fontawesome.com/e243a1dc50.js" crossorigin="anonymous"></script>
 
 <section class="text-rose-100 font-space">
-        <div class="flex flex-row justify-start space-x-4 mt-8">
+        <div class="flex flex-row justify-start space-x-8 mt-8">
                 {
                         buttons.map(button => (
                                 <button><i class={button}></i></button>
