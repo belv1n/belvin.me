@@ -26,7 +26,7 @@
                 console.log(d);
                 //avatar.src = `https://cdn.discordapp.com/avatars/${d.discord_user.id}/${d.discord_user.avatar}.png`;
                 if (d.listening_to_spotify) {
-                        nowplaying.innerHTML = `currently playing "${d.spotify.song}" by ${d.spotify.artist}`;
+                        nowplaying.innerHTML = `spotify: playing "${d.spotify.song}" by ${d.spotify.artist}`;
                 } else {
                         nowplaying.innerHTML = "spotify: not playing anything at the moment";
                 }
