@@ -1,9 +1,8 @@
 ---
-
+import Icon from "../atoms/icon.astro";
 import Intro from "../molecules/intro.astro";
 import Social from "../molecules/socials.astro";
 import Presence from "../molecules/presence.astro";
-import Icon from "../atoms/icon.astro";
 import About from "../molecules/about.astro";
 
 export const prerender = true;
@@ -14,17 +13,16 @@ export const prerender = true;
 
 <section>
         <div class="flex flex-row justify-center items-center mt-36 mb-24 mx-6 sm:mx-[10px] md:mx-[25px] lg:justify-between lg:mx[30px] xl:mx-[35px] 2xl:mx-[500px]">
+                <Icon profilePicture="https://images.unsplash.com/photo-1684298892790-aa1cbc2e3711?q=80&w=2075&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"> </Icon>
+
                 <section>
                         <Intro> </Intro>
                         <Social> </Social>
-                              
-                </section>               
-                
-                <Icon  profilePicture="https://media.tenor.com/iUHKMSbav30AAAAC/aes-pfp.gif"> </Icon>
-        </div>
 
-        <div class="flex justify-center mx-6 sm:mx-[10px] md:mx-[20px] xl:mx-[35px] 2xl:mx-[500px] sm:flex-col md:flex-row lg:flex-row xl:flex-row 2xl:flex-row" >
-                <Presence> </Presence>
+                        <section class="mt-10">
+                                <Presence> </Presence>
+                        </section>
+                </section>               
         </div>
 </section>
 
