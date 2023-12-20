@@ -19,18 +19,18 @@
         sock.addEventListener("message", (e) => {
                 const data = JSON.parse(e.data);
                 if (data.op !== 0) {
-                return;
+                        return;
                 }
                 
                 const { d } = data;
                 console.log(d);
                 //avatar.src = `https://cdn.discordapp.com/avatars/${d.discord_user.id}/${d.discord_user.avatar}.png`;
-                if (d.listening_to_spotify) {
-                        nowplaying.innerHTML = `spotify: playing "${d.spotify.song}" by ${d.spotify.artist}`;
-                } else {
-                        nowplaying.innerHTML = "spotify: not playing anything at the moment";
-                }
                 //username.innerHTML = `@${d.discord_user.username}`;
+                if (d.listening_to_spotify) {
+                        nowplaying.innerHTML = `playing "${d.spotify.song}" on spotify`;
+                } else {
+                        song.innerHTML = "not playing anything at the moment";
+                }
 
                 if (d.discord_status === "online") {
                         state.classList.remove(lastState);
@@ -54,10 +54,9 @@
                         lastState = "text-gray-500";
                 }
         });
-        
 </script>
 
 
-<section class="flex text-white font-mono">
-        <h4 id="nowplaying" class="break-words text-lg w-2/4 line-clamp-1">loading...</h4>
+<section class="text-white font-mono">
+        <h4 id="nowplaying" class="break-words text-lg">loading...</h4>
 </section>
