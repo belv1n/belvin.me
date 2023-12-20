@@ -29,7 +29,7 @@
                 if (d.listening_to_spotify) {
                         nowplaying.innerHTML = `playing "${d.spotify.song}" on spotify`;
                 } else {
-                        song.innerHTML = "not playing anything at the moment";
+                        nowplaying.innerHTML = "not playing anything at the moment";
                 }
 
                 if (d.discord_status === "online") {
