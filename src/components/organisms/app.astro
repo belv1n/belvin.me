@@ -1,24 +1,18 @@
 ---
-import Icon from "../atoms/icon.astro";
 import Intro from "../molecules/intro.astro";
-import Social from "../molecules/socials.astro";
 import Presence from "../molecules/presence.astro";
 
 export const prerender = true;
-
 ---
 
 <script src="https://kit.fontawesome.com/e243a1dc50.js" crossorigin="anonymous"></script>
 
 <section>
-        <div class="flex flex-col justify-evenly items-center lg:flex-row h-screen px-5">
-                <Icon profilePicture="https://images.unsplash.com/photo-1684298892790-aa1cbc2e3711?q=80&w=2075&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"> </Icon>
-
+        <div class="flex flex-col justify-center items-center lg:flex-row h-screen px-5">
                 <section>
                         <Intro> </Intro>
-                        <Social> </Social>
 
-                        <section class="mt-6">
+                        <section class="mt-12">
                                 <Presence> </Presence>
                         </section>
                 </section>               

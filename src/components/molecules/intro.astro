@@ -1,14 +1,26 @@
 ---
+import Social from "../molecules/socials.astro";
 
 
 ---
 
 <section class="font-mono text-white">
-        <div class="leading-loose text-2xl md:text-7xl">
-                <section class="font-bold">
-                        <h1>Kelvin</h1>
-                        <h4 id="state" class="text-lg font-bold"></h4>
+        <div class="flex flex-row space-x-4 font-space">
+                        
+                <section class="flex flex-col justify-center">
+                        <img id="avatar" src="" alt="alt">
+                        <Social></Social>
                 </section>
-                <p class="break-words text-2xl mt-5 opacity-85">A very lost kid who likes music. <br> Attempting to web dev.</p>
+
+                <section class="flex flex-col justify-between">
+                        <section class="flex flex-col space-y-3 max-w-md">
+                                <h1 id="username" class="font-bold text-xl">loading</h1>
+                                <p class="text-wrap block">consectetur adipisicing elit. Dolores facere reiciendis placeat quas praesentium nostrum rem a aspernatur quisquam beatae dolorem voluptate iure nemo, illo, mollitia libero tenetur consectetur ad?</p>
+                        </section>
+                        
+                        <section>
+                                <h1>- kelvin was here :3</h1>
+                        </section>
+                </section>
         </div>
 </section>

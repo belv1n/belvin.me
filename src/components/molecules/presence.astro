@@ -1,20 +1,42 @@
 ---
 
 
+
 ---
 
 <script>
         import LanyardClient from "../../scripts/lanyardClient.js";
-      
-        const avatar = document.getElementById("avatar") as HTMLImageElement;
-        const username = document.getElementById("username");
-        const state = document.getElementById("state");
-        const nowplaying = document.getElementById("nowplaying");
-        let lastState = "text-green-500";
-
-      
+        import moment from 'moment';
+        
         const client = new LanyardClient();
         let sock = client.subscribe("675104167345258506");
+
+        const avatar = document.getElementById("avatar") as HTMLImageElement;
+        const username = document.getElementById("username");
+        const cover = document.getElementById("cover");
+        const song = document.getElementById("song");
+        const artist = document.getElementById("artist");
+        const album = document.getElementById("album");
+        const bar = document.getElementById("bar");
+        const start = document.getElementById("start");
+        const end = document.getElementById("end");
+
+        let lastState = "text-green-500";
+        const fmtTime = (duration: number) => moment.utc(duration).format('mm:ss')
+
+
+        const calculateProgress = ({ start, end }: { start: number, end: number}) => {
+                let startTime = Date.now() - start
+                const endTime = end - start
+
+                if (startTime >= endTime) { startTime = endTime }
+
+                return {
+                start: fmtTime(startTime),
+                end: fmtTime(endTime),
+                perc: Math.round((startTime / endTime) * 100)
+                }
+        }
       
         sock.addEventListener("message", (e) => {
                 const data = JSON.parse(e.data);
@@ -23,40 +45,70 @@
                 }
                 
                 const { d } = data;
-                console.log(d);
-                //avatar.src = `https://cdn.discordapp.com/avatars/${d.discord_user.id}/${d.discord_user.avatar}.png`;
-                //username.innerHTML = `@${d.discord_user.username}`;
+                let progress = calculateProgress(d.spotify.timestamps);
+                avatar.src = `https://cdn.discordapp.com/avatars/${d.discord_user.id}/${d.discord_user.avatar}.png`;
+                username.innerHTML = `@${d.discord_user.display_name}`;
+
+
                 if (d.listening_to_spotify) {
-                        nowplaying.innerHTML = `playing "${d.spotify.song}" on spotify`;
+                        cover.setAttribute('src', d.spotify.album_art_url);
+                        song.innerHTML = d.spotify.song;
+                        artist.innerHTML = `by ${d.spotify.artist}`;
+                        album.innerHTML = `on ${d.spotify.album}`;
+
+                        start.innerHTML = progress.start
+                        end.innerHTML = progress.end
+
+
+                        let activeInterval = setInterval(() => {
+                                progress = calculateProgress(d.spotify.timestamps)
+                                bar.style.width = `${progress.perc}%`
+                                start.innerHTML = `${progress.start}`
+                        }, 1000)
+
                 } else {
-                        nowplaying.innerHTML = "not playing anything at the moment";
+                        return
                 }
 
                 if (d.discord_status === "online") {
-                        state.classList.remove(lastState);
-                        state.innerHTML = "online";
-                        state.classList.add("text-green-500");
+                        username.classList.remove(lastState);
+                        username.classList.add("text-green-500");
                         lastState = "text-green-500";
                 } else if (d.discord_status === "idle") {
-                        state.classList.remove(lastState);
-                        state.innerHTML = "idle";
-                        state.classList.add("text-yellow-500");
+                        username.classList.remove(lastState);
+                        username.classList.add("text-yellow-500");
                         lastState = "text-yellow-500";
                 } else if (d.discord_status === "dnd") {
-                        state.classList.remove(lastState);
-                        state.innerHTML = "dnd";
-                        state.classList.add("text-red-500");
+                        username.classList.remove(lastState);
+                        username.classList.add("text-red-500");
                         lastState = "text-red-500";
                 } else {
-                        state.classList.remove(lastState);
-                        state.innerHTML = "offline";
-                        state.classList.add("text-gray-500");
+                        username.classList.remove(lastState);
+                        username.classList.add("text-gray-500");
                         lastState = "text-gray-500";
                 }
+                
         });
 </script>
 
 
-<section class="text-white font-mono">
-        <h4 id="nowplaying" class="break-words text-lg">loading...</h4>
+<section class="flex flex-col text-white space-y-4">
+        <section class="flex flex-row space-x-3 justify-start items-center">
+                <img id="cover" class="max-h-28 rounded" src="" alt="alt">
+                        
+                <section class="flex-col">
+                        <h1 id="song" class="font-bold text-xl"></h1>
+                        <h1 id="artist"></h1>
+                        <h1 id="album"></h1>
+                </section>
+        </section>
+
+        <div class="mt-2 w-full rounded-full h-1 bg-gray-300 dark:bg-gray-700">
+                <div id="bar" class="bg-gray-700 dark:bg-white h-1 rounded-full"/>
+        </div>
+
+        <div class="flex justify-between w-full mt-1">
+                <p id="start" class="text font-bold text-xs"></p>
+                <p id="end" class="text font-bold text-xs"></p>
+        </div>
 </section>
