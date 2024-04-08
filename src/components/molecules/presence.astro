@@ -11,6 +11,7 @@
         const client = new LanyardClient();
         let sock = client.subscribe("675104167345258506");
 
+        const container = document.getElementById("container");
         const avatar = document.getElementById("avatar") as HTMLImageElement;
         const username = document.getElementById("username");
         const cover = document.getElementById("cover");
@@ -21,6 +22,7 @@
         const start = document.getElementById("start");
         const end = document.getElementById("end");
 
+        let activeInterval = null;
         let lastState = "text-green-500";
         const fmtTime = (duration: number) => moment.utc(duration).format('mm:ss')
 
@@ -45,12 +47,13 @@
                 }
                 
                 const { d } = data;
-                let progress = calculateProgress(d.spotify.timestamps);
                 avatar.src = `https://cdn.discordapp.com/avatars/${d.discord_user.id}/${d.discord_user.avatar}.png`;
                 username.innerHTML = `@${d.discord_user.display_name}`;
 
 
                 if (d.listening_to_spotify) {
+                        container.classList.remove('hidden')
+                        let progress = calculateProgress(d.spotify.timestamps);
                         cover.setAttribute('src', d.spotify.album_art_url);
                         song.innerHTML = d.spotify.song;
                         artist.innerHTML = `by ${d.spotify.artist}`;
@@ -59,15 +62,16 @@
                         start.innerHTML = progress.start
                         end.innerHTML = progress.end
 
-
-                        let activeInterval = setInterval(() => {
+                        activeInterval = setInterval(() => {
                                 progress = calculateProgress(d.spotify.timestamps)
                                 bar.style.width = `${progress.perc}%`
                                 start.innerHTML = `${progress.start}`
                         }, 1000)
 
+
                 } else {
-                        return
+                        clearInterval(activeInterval);
+                        container.classList.add('hidden')
                 }
 
                 if (d.discord_status === "online") {
@@ -92,9 +96,9 @@
 </script>
 
 
-<section class="flex flex-col text-white space-y-4">
+<section id="container" class="flex flex-col text-white space-y-4">
         <section class="flex flex-row space-x-3 justify-start items-center">
-                <img id="cover" class="max-h-28 rounded" src="" alt="alt">
+                <img id="cover" class="max-h-28 rounded" src="" alt="">
                         
                 <section class="flex-col">
                         <h1 id="song" class="font-bold text-xl"></h1>
