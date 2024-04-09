@@ -4,8 +4,7 @@ export default {
 	theme: {
 		extend: {
 			fontFamily: {
-				"space": ['Space Grotesk', 'sans-serif'],
-				"jet": ['JetBrains Mono', 'monospace'],
+				"agbalumo": ['Agbalumo', 'system-ui'],
 			},
 			keyframes: {
 				fadein: {
