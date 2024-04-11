@@ -8,14 +8,14 @@ export const prerender = true;
 <script src="https://kit.fontawesome.com/e243a1dc50.js" crossorigin="anonymous"></script>
 
 <section>
-        <div class="flex flex-col justify-center items-center lg:flex-row h-screen px-5">
-                <section>
+        <div class="flex flex-col justify-evenly items-center h-screen grid grid-col-2 gap-x-0">
+                <section class="border-2 p-10 self-end">
                         <Intro> </Intro>
-
-                        <section class="mt-12">
-                                <Presence> </Presence>
-                        </section>
-                </section>               
+                </section>            
+                
+                <section class="p-10 border-2 self-start">
+                        <Presence> </Presence>
+                </section>
         </div>
 </section>
 
