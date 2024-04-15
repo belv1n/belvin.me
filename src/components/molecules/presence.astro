@@ -62,6 +62,8 @@
                         start.innerHTML = progress.start
                         end.innerHTML = progress.end
 
+                        if (activeInterval) clearInterval(activeInterval);
+
                         activeInterval = setInterval(() => {
                                 progress = calculateProgress(d.spotify.timestamps)
                                 bar.style.width = `${progress.perc}%`
@@ -96,7 +98,7 @@
 </script>
 
 
-<section id="container" class="flex flex-col text-white space-y-4 p-10 border-2">
+<section id="container" class="flex flex-col text-white space-y-4 p-10">
         <section class="flex flex-row space-x-3 justify-start items-center">
                 <img id="cover" class="max-h-28 rounded" src="" alt="">
                         
